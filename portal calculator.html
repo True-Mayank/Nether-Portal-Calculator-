@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minecraft Portal Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calculator {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #5cdb95;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            color: white;
+        }
+        button:hover {
+            background-color: #45b87a;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #222;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>Minecraft Portal Calculator</h1>
+        <p>Convert Overworld coordinates to Nether coordinates or vice versa.</p>
+        
+        <!-- Overworld to Nether Conversion -->
+        <h2>Overworld to Nether</h2>
+        <label for="overworldX">Overworld X:</label>
+        <input type="number" id="overworldX" placeholder="X coordinate" />
+        <br>
+        <label for="overworldZ">Overworld Z:</label>
+        <input type="number" id="overworldZ" placeholder="Z coordinate" />
+        <br>
+        <button onclick="calculateNether()">Convert to Nether</button>
+        
+        <!-- Nether to Overworld Conversion -->
+        <h2>Nether to Overworld</h2>
+        <label for="netherX">Nether X:</label>
+        <input type="number" id="netherX" placeholder="X coordinate" />
+        <br>
+        <label for="netherZ">Nether Z:</label>
+        <input type="number" id="netherZ" placeholder="Z coordinate" />
+        <br>
+        <button onclick="calculateOverworld()">Convert to Overworld</button>
+
+        <!-- Result Output -->
+        <div class="result" id="result">
+            <p id="output"></p>
+        </div>
+    </div>
+
+    <script>
+        // Function to calculate Nether coordinates from Overworld coordinates
+        function calculateNether() {
+            const overworldX = document.getElementById("overworldX").value;
+            const overworldZ = document.getElementById("overworldZ").value;
+
+            // Conversion logic
+            const netherX = overworldX / 8;
+            const netherZ = overworldZ / 8;
+
+            // Display result
+            document.getElementById("output").innerText = `Nether Coordinates: X = ${netherX.toFixed(2)}, Z = ${netherZ.toFixed(2)}`;
+        }
+
+        // Function to calculate Overworld coordinates from Nether coordinates
+        function calculateOverworld() {
+            const netherX = document.getElementById("netherX").value;
+            const netherZ = document.getElementById("netherZ").value;
+
+            // Conversion logic
+            const overworldX = netherX * 8;
+            const overworldZ = netherZ * 8;
+
+            // Display result
+            document.getElementById("output").innerText = `Overworld Coordinates: X = ${overworldX.toFixed(2)}, Z = ${overworldZ.toFixed(2)}`;
+        }
+    </script>
+</body>
+</html>
